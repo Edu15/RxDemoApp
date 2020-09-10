@@ -48,6 +48,7 @@ final class MainCell: UITableViewCell, ViewConfiguration {
         return stackView
     }()
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         buildLayout()

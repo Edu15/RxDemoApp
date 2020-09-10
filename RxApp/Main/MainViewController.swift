@@ -73,26 +73,19 @@ class MainViewController: ViewController<MainInteracting, UIView> {
                     .subscribe(onNext: { movieDetail in
                         DispatchQueue.main.async {
                             cell.configure(with: Movie(id: movieID, detail: movieDetail))
-//                            self.tableView.reloadData()
                         }
                     })
                     .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
-////
+        
         
         tableView.rx
-            .modelSelected(String.self)
+            .modelSelected(Movie.self)
             .subscribe(onNext:  { value in
-                self.presentAlert(for: value)
+                self.interactor.didTapItem(movie: value)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func presentAlert(for value: String) {
-        let alert = UIAlertController(title: value, message: "Toque em \(value)", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
     }
     
     @objc

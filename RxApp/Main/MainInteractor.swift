@@ -3,6 +3,7 @@ import RxSwift
 
 protocol MainInteracting: AnyObject {
     func didAction()
+    func didTapItem(movie: Movie)
     var movieList: Observable<[Movie]> { get }
     func getMovieDetail(fromId movieId: String, at row: Int) -> Observable<MovieDetail>
 }
@@ -10,8 +11,6 @@ protocol MainInteracting: AnyObject {
 final class MainInteractor {
     private let service: MainServicing
     private let presenter: MainPresenting
-    
-    
     
     init(service: MainServicing, presenter: MainPresenting) {
         self.service = service
@@ -34,10 +33,14 @@ extension MainInteractor: MainInteracting {
     
     func getMovieDetail(fromId movieId: String, at row: Int) -> Observable<MovieDetail> {
         service.getMovieDetails(movieID: movieId)
-//             ???
+//            Como salvar o estado retornado ???
 //            .do { movieDetail in
 //                movieList[row].detail = movieDetail
 //            }
+    }
+    
+    func didTapItem(movie: Movie) {
+        print(movie.detail)
     }
     
     func didAction() {

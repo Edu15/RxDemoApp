@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		7302A76224F896780067D603 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302A76124F896780067D603 /* Movie.swift */; };
 		73149B5E24F74BB9009BAEA3 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73149B5D24F74BB9009BAEA3 /* MainCell.swift */; };
-		7332D0C42509B972001EDBFF /* MediaDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0BE2509B972001EDBFF /* MediaDetailCoordinator.swift */; };
-		7332D0C52509B972001EDBFF /* MediaDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0BF2509B972001EDBFF /* MediaDetailFactory.swift */; };
-		7332D0C62509B972001EDBFF /* MediaDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0C02509B972001EDBFF /* MediaDetailPresenter.swift */; };
-		7332D0C72509B972001EDBFF /* MediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0C12509B972001EDBFF /* MediaDetailViewController.swift */; };
-		7332D0C82509B972001EDBFF /* MediaDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0C22509B972001EDBFF /* MediaDetailInteractor.swift */; };
-		7332D0C92509B972001EDBFF /* MediaDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7332D0C32509B972001EDBFF /* MediaDetailService.swift */; };
 		737BA7B4249D735800AD2BB2 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BA7AE249D735800AD2BB2 /* SettingsCoordinator.swift */; };
 		737BA7B5249D735800AD2BB2 /* SettingsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BA7AF249D735800AD2BB2 /* SettingsFactory.swift */; };
 		737BA7B6249D735800AD2BB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BA7B0249D735800AD2BB2 /* SettingsPresenter.swift */; };
@@ -61,12 +55,6 @@
 		42089B1525264F23648D7571 /* Pods-RxApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxApp.debug.xcconfig"; path = "Target Support Files/Pods-RxApp/Pods-RxApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7302A76124F896780067D603 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		73149B5D24F74BB9009BAEA3 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
-		7332D0BE2509B972001EDBFF /* MediaDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailCoordinator.swift; sourceTree = "<group>"; };
-		7332D0BF2509B972001EDBFF /* MediaDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailFactory.swift; sourceTree = "<group>"; };
-		7332D0C02509B972001EDBFF /* MediaDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailPresenter.swift; sourceTree = "<group>"; };
-		7332D0C12509B972001EDBFF /* MediaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailViewController.swift; sourceTree = "<group>"; };
-		7332D0C22509B972001EDBFF /* MediaDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailInteractor.swift; sourceTree = "<group>"; };
-		7332D0C32509B972001EDBFF /* MediaDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailService.swift; sourceTree = "<group>"; };
 		737BA7AE249D735800AD2BB2 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		737BA7AF249D735800AD2BB2 /* SettingsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFactory.swift; sourceTree = "<group>"; };
 		737BA7B0249D735800AD2BB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -133,19 +121,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7332D0BD2509B958001EDBFF /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				7332D0BE2509B972001EDBFF /* MediaDetailCoordinator.swift */,
-				7332D0BF2509B972001EDBFF /* MediaDetailFactory.swift */,
-				7332D0C02509B972001EDBFF /* MediaDetailPresenter.swift */,
-				7332D0C12509B972001EDBFF /* MediaDetailViewController.swift */,
-				7332D0C22509B972001EDBFF /* MediaDetailInteractor.swift */,
-				7332D0C32509B972001EDBFF /* MediaDetailService.swift */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
 		737BA7AD249D525200AD2BB2 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +166,6 @@
 				73EF2CCF249B03F500F5EC10 /* SceneDelegate.swift */,
 				737BA7AD249D525200AD2BB2 /* Settings */,
 				73EF2CFD249B062E00F5EC10 /* Main */,
-				7332D0BD2509B958001EDBFF /* Detail */,
 				73EF2CD6249B03F700F5EC10 /* Assets.xcassets */,
 				73EF2CD8249B03F700F5EC10 /* LaunchScreen.storyboard */,
 				73EF2CDB249B03F700F5EC10 /* Info.plist */,
@@ -437,27 +411,21 @@
 				737BA7B9249D735800AD2BB2 /* SettingsService.swift in Sources */,
 				73EF2D07249B063D00F5EC10 /* MainPresenter.swift in Sources */,
 				73EF2D05249B063D00F5EC10 /* MainCoordinator.swift in Sources */,
-				7332D0C82509B972001EDBFF /* MediaDetailInteractor.swift in Sources */,
 				73EF2CCE249B03F500F5EC10 /* AppDelegate.swift in Sources */,
-				7332D0C92509B972001EDBFF /* MediaDetailService.swift in Sources */,
-				7332D0C62509B972001EDBFF /* MediaDetailPresenter.swift in Sources */,
 				737BA7B8249D735800AD2BB2 /* SettingsViewModel.swift in Sources */,
 				73E7D09024A640C6006147C0 /* Andre_CustomBackButton.swift in Sources */,
 				73149B5E24F74BB9009BAEA3 /* MainCell.swift in Sources */,
 				73EF2D08249B063D00F5EC10 /* MainDisplay.swift in Sources */,
 				7302A76224F896780067D603 /* Movie.swift in Sources */,
 				737BA7BB249D76AE00AD2BB2 /* CustomBackNavigationButton.swift in Sources */,
-				7332D0C52509B972001EDBFF /* MediaDetailFactory.swift in Sources */,
 				73EF2D06249B063D00F5EC10 /* MainFactory.swift in Sources */,
 				737BA7B6249D735800AD2BB2 /* SettingsPresenter.swift in Sources */,
 				73EF2D0B249B063D00F5EC10 /* MainService.swift in Sources */,
 				737BA7B7249D735800AD2BB2 /* SettingsViewController.swift in Sources */,
 				73EF2CD0249B03F500F5EC10 /* SceneDelegate.swift in Sources */,
 				737BA7B4249D735800AD2BB2 /* SettingsCoordinator.swift in Sources */,
-				7332D0C72509B972001EDBFF /* MediaDetailViewController.swift in Sources */,
 				73EF2D09249B063D00F5EC10 /* MainViewController.swift in Sources */,
 				73EF2D0A249B063D00F5EC10 /* MainInteractor.swift in Sources */,
-				7332D0C42509B972001EDBFF /* MediaDetailCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
