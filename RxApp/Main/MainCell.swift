@@ -2,9 +2,11 @@ import UIKit
 import SnapKit
 
 final class MainCell: UITableViewCell, ViewConfiguration {
+    var id: String?
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .title2)
+        label.font = .preferredFont(forTextStyle: .headline)
         label.numberOfLines = 0
         label.text = "-"
         return label
@@ -12,15 +14,25 @@ final class MainCell: UITableViewCell, ViewConfiguration {
     
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .title3)
-        label.text = "-"
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.text = "?"
+        return label
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .caption1)
+        label.text = "?"
         return label
     }()
     
     private lazy var iconView: UIImageView = {
         let iconView = UIImageView()
-        iconView.backgroundColor = .lightGray
-        iconView.layer.cornerRadius = 30
+//        iconView.backgroundColor = .lightGray
+//        iconView.layer.cornerRadius = 20
+        iconView.contentMode = .scaleAspectFit
+        iconView.setContentHuggingPriority(.required, for: .horizontal)
+        iconView.tintColor = .black
         return iconView
     }()
     
@@ -46,33 +58,30 @@ final class MainCell: UITableViewCell, ViewConfiguration {
     }
     
     func configure(with movie: Movie) {
-        titleLabel.text = movie.title
-        yearLabel.text = String(movie.year)
-        iconView.image = UIImage(systemName: "square.and.pencil")
-    }
-    
-    func configure(with id: String) {
-        titleLabel.text = id
-        yearLabel.text = nil
-        iconView.image = nil
-    }
-    
-    func setupConstraints() {
-        titleYearStackView.addArrangedSubview(titleLabel)
-        titleYearStackView.addArrangedSubview(yearLabel)
-        
-        contentStackView.addArrangedSubview(titleYearStackView)
-        contentStackView.addArrangedSubview(iconView)
-        contentView.addSubview(contentStackView)
+        self.id = movie.id
+        titleLabel.text = movie.detail?.title ?? "?"
+        yearLabel.text = String(movie.detail?.year ?? 0)
+        timeLabel.text = "\(movie.detail?.runningTimeInMinutes ?? 0) minutos"
+        iconView.image = UIImage(systemName: "film")
     }
     
     func buildViewHierarchy() {
+        titleYearStackView.addArrangedSubview(titleLabel)
+        titleYearStackView.addArrangedSubview(yearLabel)
+        titleYearStackView.addArrangedSubview(timeLabel)
+        
+        contentStackView.addArrangedSubview(titleYearStackView)
+        contentStackView.addArrangedSubview(iconView)
+        addSubview(contentStackView)
+    }
+    
+    func setupConstraints() {
         contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(8)
         }
         
-        iconView.snp.makeConstraints {
-            $0.width.height.equalTo(60)
-        }
+//        iconView.snp.makeConstraints {
+//            $0.width.height.
+//        }
     }
 }

@@ -3,8 +3,8 @@ import RxSwift
 
 protocol MainInteracting: AnyObject {
     func didAction()
-    var moviesList: Observable<[String]> { get }
-    func getMovieDetail(fromId movieId: String) -> Observable<Movie>
+    var movieList: Observable<[Movie]> { get }
+    func getMovieDetail(fromId movieId: String, at row: Int) -> Observable<MovieDetail>
 }
 
 final class MainInteractor {
@@ -20,18 +20,24 @@ final class MainInteractor {
 }
 
 extension MainInteractor: MainInteracting {
-    var moviesList: Observable<[String]> {
+    var movieList: Observable<[Movie]> {
         service.getComingMovies()
-            .map { array -> [String] in
-                let newArray = array.map { string -> String in
-                    String(string.split(separator: "/").last ?? "")
+            .map { array -> [Movie] in
+                let newArray = array.map { string -> Movie in
+                    let movieId = String(string.split(separator: "/").last ?? "")
+                    return Movie(id: movieId, detail: nil)
                 }
-                return Array<String>(newArray.prefix(5))
+                return Array<Movie>(newArray.prefix(5))
             }
+        .share(replay: 1, scope: .forever)
     }
     
-    func getMovieDetail(fromId movieId: String) -> Observable<Movie> {
+    func getMovieDetail(fromId movieId: String, at row: Int) -> Observable<MovieDetail> {
         service.getMovieDetails(movieID: movieId)
+//             ???
+//            .do { movieDetail in
+//                movieList[row].detail = movieDetail
+//            }
     }
     
     func didAction() {

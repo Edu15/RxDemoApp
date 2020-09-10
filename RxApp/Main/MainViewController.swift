@@ -8,7 +8,8 @@ class MainViewController: ViewController<MainInteracting, UIView> {
         let tableView = UITableView()
 //        tableView.delegate = self
 //        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(MainCell.self, forCellReuseIdentifier: "cell")
+        tableView.tableFooterView = UIView()
         return tableView
     }()
 
@@ -42,19 +43,43 @@ class MainViewController: ViewController<MainInteracting, UIView> {
     }
     
     private func bindModelToTableView() {
-        interactor.moviesList.bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, element, cell) in
-            
-//            interactor.getMovieDetail(fromId: element).bind(to: cell.rx.base.textLabel?.text)
-            cell.textLabel?.text = "\(element) @ row \(row)"
-        }
-            .disposed(by: disposeBag)
-        
-//        tableView.rx.willDisplayCell
-//            .subscribe(onNext: { cell, indexPath in
-//               // guard let cell = cell as? 
+        interactor.movieList.bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: MainCell.self)) { [weak self] row, movie, cell in
+            cell.configure(with: movie)
+//
+//            guard cell.titleLabel.text == nil, let self = self else {
+//                return
+//            }
+////            self.interactor.getMovieDetail(fromId: movie.id)
+//            //.subscribeOn(MainScheduler.instance)   ???
+//            .subscribe(onNext: { movieDetail in
+//                DispatchQueue.main.async {
+//                    cell.configure(with: Movie(id: movie.id, detail: movieDetail))
+//                    //self.tableView.reloadData()
+//                }
 //            })
-//            .disposed(by: disposeBag)
-//            
+//            .disposed(by: self.disposeBag)
+        }
+        .disposed(by: disposeBag)
+        
+//        interactor.movieList.bind(to: tableView.rx.willDisplayCell() { cell, indexPath in
+//        }
+        
+        tableView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] cell, indexPath in
+                guard let self = self, let cell = cell as? MainCell, let movieID = cell.id else {
+                    return
+                }
+                self.interactor.getMovieDetail(fromId: movieID, at: indexPath.row)
+                    .subscribe(onNext: { movieDetail in
+                        DispatchQueue.main.async {
+                            cell.configure(with: Movie(id: movieID, detail: movieDetail))
+//                            self.tableView.reloadData()
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
+////
         
         tableView.rx
             .modelSelected(String.self)
